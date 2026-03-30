@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.PersonalDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="0.6*,0.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Personal Details" />
+            <Button
+                Grid.Column="1"
+                Style="{StaticResource NavigationButtonStyle}"
+                Text="EDIT" />
+        </Grid>
+    </Shell.TitleView>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
+            <StackLayout
+                Padding="0,0,16,0"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                Spacing="8">
+                <!--  Pesonal Details  -->
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Personal Details" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="First Name" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter First Name" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Middle Name" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Middle Name" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Last Name" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Last Name" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Personal Contact Number" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Keyboard="Telephone"
+                    Placeholder="Enter Contact Number" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Address" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="Enter Address" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Date of Birth" />
+                <DatePicker
+                    x:Name="DateOfBirthPicker"
+                    Format="D"
+                    HorizontalOptions="FillAndExpand" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Age" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Keyboard="Numeric"
+                    Placeholder="Enter Age" />
+
+                <!--  Family Doctor Details  -->
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Family Doctor Details" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Family Doctor / Physician Name" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Doctor Name" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Family Doctor / Physician Hospital Name" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Hospital Name" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Family Doctor / Physician Adrress" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="Enter Address" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Family Doctor / Phisician Hospital Number" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Keyboard="Telephone"
+                    Placeholder="Enter Contact Number" />
+
+                <!--  Medical Details  -->
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Medical Details" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Height (cm)" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Height (cm)" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Weight (Kg)" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Weight (Kg)" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Blood Group" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Enter Blood group" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Medical ID notes" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Ex. pacemaker, epilepsy, etc" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Style="{StaticResource MediumSecondaryLabelStyle}"
+                    Text="Allergies and sensitivities"
+                    TextColor="{StaticResource greyPrimary}" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Drug Allergies" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="Add reaction note" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Food Allergies" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="Add food allergies" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Other Allergies" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="Other Ex. latex, iodine, etc " />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Style="{StaticResource MediumSecondaryLabelStyle}"
+                    Text="Medical Conditions / Diagnosis"
+                    TextColor="{StaticResource greyPrimary}" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Chronic Conditions" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="Ex. Diabetes, hypertension, asthma, etc" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Surgeries / Hospitalization" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="if any..." />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Past Major Illness" />
+                <Editor
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    MinimumHeightRequest="52"
+                    Placeholder="if any..." />
+
+                <!--  Insurance Details  -->
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Insurance Details" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Insurance Provider" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Insurance Provider" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Insurance Member ID" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Insurance Member ID" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Insurance Contact Number" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Insurance Contact Number" />
+
+            </StackLayout>
+        </ScrollView>
+        <VerticalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="EndAndExpand">
+            <Line Style="{StaticResource SeparatorLineStyle}" />
+            <Grid HorizontalOptions="FillAndExpand" Style="{StaticResource BottomButtonGridStyle}">
+                <Button
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource ConfirmationButtonStyle}"
+                    Text="Cancel" />
+                <Button
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource ConfirmationButtonStyle}"
+                    Text="Confirm" />
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.ReportsAndSummaryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MediCue.Models"
+    xmlns:vm="clr-namespace:MediCue.ViewModels"
+    Title="ReportsAndSummaryPage"
+    x:DataType="vm:ReportsAndSummaryViewModel"
+    Shell.FlyoutBehavior="Flyout"
+    Style="{StaticResource ShellPageWithTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions=".8*,.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Reports &amp; Summary" />
+            <ImageButton
+                Grid.Column="1"
+                BackgroundColor="{StaticResource StatusBarColor}"
+                Command="{Binding UploadReportCommand}"
+                Source="uploadattachment.png"
+                VerticalOptions="End" />
+        </Grid>
+    </Shell.TitleView>
+
+
+    <Grid RowDefinitions="*,Auto">
+
+        <Grid Padding="0,16,0,8" RowDefinitions="Auto, * , Auto">
+
+            <!--  Header row (table headers)  -->
+            <Grid
+                Grid.Row="0"
+                Padding="0,8,0,8"
+                BackgroundColor="{StaticResource greyTertiary}"
+                ColumnDefinitions="0.1*,.3*,0.4*,0.2*"
+                VerticalOptions="Center">
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    Style="{StaticResource MediumSecondaryLabelStyle}"
+                    Text="Date"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    Style="{StaticResource MediumSecondaryLabelStyle}"
+                    Text="Report Title"
+                    TextColor="Black"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+
+            <!--  Reports list  -->
+            <CollectionView
+                x:Name="ReportsCollection"
+                Grid.Row="1"
+                ItemsSource="{Binding Reports}"
+                SelectedItem="{Binding SelectedFile, Mode=TwoWay}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ReportItem">
+                        <Grid
+                            Margin="0,4"
+                            Padding="0"
+                            ColumnDefinitions="0.1*,.3*,0.6*">
+                            <CheckBox
+                                Grid.Column="0"
+                                IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                IsEnabled="{Binding IsCheckBoxEnable}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding ReportDate, StringFormat='{}{0:dd/MM/yy}'}"
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Column="2"
+                                Text="{Binding Heading}"
+                                TextColor="Black"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--  Generate Summary  -->
+            <Button
+                Grid.Row="2"
+                BackgroundColor="#34A853"
+                Command="{Binding GenerateSummaryCommand}"
+                CornerRadius="8"
+                FontAttributes="Bold"
+                HeightRequest="48"
+                Text="Generate Summary"
+                TextColor="White" />
+        </Grid>
+
+
+        <Grid
+            Grid.Row="1"
+            Margin="0,0,-16,0"
+            Style="{StaticResource AppFooterGridStyle}">
+            <Line Grid.Column="2" Style="{StaticResource FooterHighlighterLineStyle}" />
+        </Grid>
+    </Grid>
+</ContentPage>

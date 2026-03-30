@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.RefillMedicinePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="0.8*,0.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Refill Medicine" />
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid
+        RowDefinitions="Auto, Auto, Auto, Auto"
+        RowSpacing="16"
+        VerticalOptions="Center">
+        <Border
+            Padding="16"
+            BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+            HorizontalOptions="FillAndExpand"
+            Style="{StaticResource FullWidthBorderButtonCardStyle}"
+            VerticalOptions="Center">
+
+            <Border.Shadow>
+                <Shadow
+                    Brush="{StaticResource shadowColor}"
+                    Opacity="0.15"
+                    Radius="2"
+                    Offset="0,6" />
+            </Border.Shadow>
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Enter Medicine Name" />
+                <Entry Placeholder="Type Medicine Name here..." />
+            </VerticalStackLayout>
+        </Border>
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions="*,*"
+            RowDefinitions="Auto, Auto">
+            <Border
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Padding="8"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource UpperHalfBorderButtonStyle}"
+                VerticalOptions="Center">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="Remaining Stock"
+                    TextColor="{StaticResource pupleAAA}" />
+            </Border>
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                Padding="8"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource LowerHalfLeftBorderButtonStyle}"
+                VerticalOptions="Center">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Days"
+                        TextColor="{StaticResource pupleAAA}" />
+                    <Label
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="3"
+                        TextColor="{StaticResource pupleAAA}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border
+                Grid.Row="1"
+                Grid.Column="1"
+                Padding="8"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource LowerHalfRightBorderButtonStyle}"
+                VerticalOptions="Center">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Tablets"
+                        TextColor="{StaticResource pupleAAA}" />
+                    <Label
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="6"
+                        TextColor="{StaticResource pupleAAA}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2" RowDefinitions="Auto,Auto">
+            <Border
+                Grid.Row="0"
+                Grid.Column="1"
+                Padding="8"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource UpperHalfBorderButtonStyle}"
+                VerticalOptions="Center">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="Add Quantity"
+                    TextColor="{StaticResource pupleAAA}" />
+            </Border>
+            <Border
+                Grid.Row="1"
+                Grid.Column="1"
+                Padding="8"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource LowerHalfBorderButtonStyle}"
+                VerticalOptions="Center">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <RadioButton Content="Number of Days" />
+                    <RadioButton Content="Number of Tablets" />
+
+                    <Border
+                        Padding="12,8"
+                        BackgroundColor="White"
+                        Stroke="#9CA3AF"
+                        StrokeShape="RoundRectangle 8"
+                        StrokeThickness="1.5">
+
+                        <Entry
+                            Keyboard="Numeric"
+                            Placeholder="Count"
+                            WidthRequest="60" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <Button
+            Grid.Row="3"
+            Margin="16"
+            Text="Save / Confirm" />
+    </Grid>
+
+</ContentPage>

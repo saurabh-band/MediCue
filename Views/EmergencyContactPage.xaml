@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.EmergencyContactPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="EmergencyContactPage"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="0.6*,0.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Emergency Contact Details" />
+            <Button
+                Grid.Column="1"
+                Style="{StaticResource NavigationButtonStyle}"
+                Text="EDIT" />
+        </Grid>
+    </Shell.TitleView>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
+            <StackLayout
+                Padding="0,0,16,0"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                Spacing="8">
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Doctor / Physician" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Dr. Jorge W. B." />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Dr. Jorge W. B." />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Keyboard="Telephone"
+                    Placeholder="Enter Contact Number" />
+
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Pharmacy" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="XYZ Pharmacy" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="XYZ Pharmacy" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Keyboard="Telephone"
+                    Placeholder="Enter Pharmacy Number" />
+
+                <Label Style="{StaticResource SectionHeaderStyle}" Text="Relative" />
+
+                <Label Style="{StaticResource MediumSecondaryLabelStyle}" Text="Mr. / Ms. ABC" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Placeholder="Mr. / Ms. AB" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="True"
+                    Keyboard="Telephone"
+                    Placeholder="Enter Relative Number" />
+            </StackLayout>
+        </ScrollView>
+        <VerticalStackLayout
+            Grid.Row="1"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="EndAndExpand">
+            <Line Style="{StaticResource SeparatorLineStyle}" />
+            <Grid HorizontalOptions="FillAndExpand" Style="{StaticResource BottomButtonGridStyle}">
+                <Button
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource ConfirmationButtonStyle}"
+                    Text="Cancel" />
+                <Button
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource ConfirmationButtonStyle}"
+                    Text="Confirm" />
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

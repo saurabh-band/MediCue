@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:stoolkit="http://schemas.syncfusion.com/maui/toolkit"
+    xmlns:stringMarkup="clr-namespace:MediCue.Extensions"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:MediCue.ViewModels"
+    x:DataType="vm:HomeViewModel"
+    Shell.FlyoutBehavior="Flyout"
+    Style="{StaticResource ShellPageWithTabBarStyle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="UserNameTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="TextColor" Value="{StaticResource pupleAAA}" />
+            </Style>
+            <Style x:Key="CommonLableStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource pupleAAA}" />
+            </Style>
+            <Style x:Key="RefillRemimderLableStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalTextAlignment" Value="Justify" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="CommonImageStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HeightRequest" Value="18" />
+                <Setter Property="WidthRequest" Value="18" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding DisappearingCommand}" EventName="Disappearing" />
+    </ContentPage.Behaviors>
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions=".8*,.2*">
+            <Button
+                Grid.Column="0"
+                BackgroundColor="{StaticResource StatusBarColor}"
+                Command="{Binding LocalNotificationCommand}"
+                FontSize="30"
+                HorizontalOptions="Center"
+                Text="MediCue"
+                TextColor="White"
+                VerticalOptions="Start" />
+            <ImageButton
+                Grid.Column="1"
+                BackgroundColor="{StaticResource StatusBarColor}"
+                Command="{Binding ChatBotCommand}"
+                Source="chatbot.png"
+                VerticalOptions="End" />
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="*, Auto">
+        <ScrollView>
+            <Grid
+                Padding="0,8,0,0"
+                RowDefinitions="Auto,Auto,Auto,Auto,*"
+                RowSpacing="16">
+
+                <Label Style="{StaticResource UserNameTitleStyle}" Text="Hi, John... !" />
+
+                <!--  Daily Medicine Reminder  -->
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand">
+                    <Border
+                        BackgroundColor="{StaticResource greyBackgroundColor}"
+                        Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                        ToolTipProperties.Text="Today's Medicine Taken Summary">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="{StaticResource shadowColor}"
+                                Opacity="0.25"
+                                Radius="2"
+                                Offset="0,6" />
+                        </Border.Shadow>
+
+                        <Grid
+                            Padding="24,16,8,16"
+                            RowDefinitions="Auto,Auto"
+                            RowSpacing="16">
+
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource CommonLableStyle}"
+                                Text="{Binding TodaysDateTime, StringFormat='{0:dd MMMM, yyyy hh:mmtt}'}" />
+                            <Grid
+                                Grid.Row="1"
+                                ColumnDefinitions="Auto,Auto,Auto"
+                                ColumnSpacing="48"
+                                HorizontalOptions="CenterAndExpand">
+                                <!--  Morning  -->
+                                <Grid Grid.Column="0" RowDefinitions="Auto,Auto,Auto">
+                                    <Label HorizontalOptions="Center" Text="09.00 am" />
+                                    <ImageButton
+                                        Grid.Row="1"
+                                        Padding="4"
+                                        Command="{Binding MorningMedicineDetailsCommand}"
+                                        HeightRequest="16"
+                                        Source="greencheckmark.png"
+                                        ToolTipProperties.Text="Click to see Morning Medicines"
+                                        WidthRequest="16" />
+                                    <Label
+                                        Grid.Row="2"
+                                        HorizontalOptions="Center"
+                                        Text="On Time" />
+                                </Grid>
+                                <!--  Afternoon  -->
+                                <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto">
+                                    <Label HorizontalOptions="Center" Text="02.00 pm" />
+                                    <ImageButton
+                                        Grid.Row="1"
+                                        Padding="4"
+                                        Command="{Binding AfternoonMedicineDetailsCommand}"
+                                        HeightRequest="16"
+                                        Source="late.png"
+                                        ToolTipProperties.Text="Click to see Afternoon Medicines"
+                                        WidthRequest="16" />
+                                    <Label
+                                        Grid.Row="2"
+                                        HorizontalOptions="Center"
+                                        Text="Late 1 Hr" />
+                                </Grid>
+                                <!--  Evening  -->
+                                <Grid Grid.Column="2" RowDefinitions="Auto,Auto,Auto">
+                                    <Label HorizontalOptions="Center" Text="09.00 pm" />
+                                    <ImageButton
+                                        Grid.Row="1"
+                                        Padding="4"
+                                        Command="{Binding EveningMedicineDetailsCommand}"
+                                        HeightRequest="16"
+                                        Source="wait.png"
+                                        ToolTipProperties.Text="Click to see Evening Medicines"
+                                        WidthRequest="16" />
+                                    <Label
+                                        Grid.Row="2"
+                                        HorizontalOptions="Center"
+                                        Text="After 2.30 Hrs." />
+                                </Grid>
+                            </Grid>
+
+                        </Grid>
+
+                    </Border>
+                </Grid>
+
+                <!--  Medicine Refill Reminders  -->
+                <Grid Grid.Row="2" HorizontalOptions="FillAndExpand">
+                    <Border
+                        BackgroundColor="{StaticResource greyBackgroundColor}"
+                        Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                        ToolTipProperties.Text="Hurry! Refill medicines that are running out...">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="{StaticResource shadowColor}"
+                                Opacity="0.15"
+                                Radius="2"
+                                Offset="0,6" />
+                        </Border.Shadow>
+
+                        <Grid
+                            Padding="24,16,8,16"
+                            RowDefinitions="Auto,Auto"
+                            RowSpacing="16">
+
+                            <Label
+                                HorizontalOptions="Center"
+                                Style="{StaticResource CommonLableStyle}"
+                                Text="! ! ! Medicine Refill Reminder ! ! !" />
+                            <ScrollView
+                                Grid.Row="1"
+                                HeightRequest="100"
+                                Orientation="Vertical"
+                                VerticalScrollBarVisibility="Always">
+                                <StackLayout Orientation="Vertical" Spacing="8">
+
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        Style="{StaticResource RefillRemimderLableStyle}"
+                                        Text="* Refill 'XYZ' medicine soon, 2 Days stock remaining." />
+                                </StackLayout>
+                            </ScrollView>
+
+                        </Grid>
+
+                    </Border>
+                </Grid>
+
+                <!--  Routine Check Up & Report Section  -->
+                <Grid
+                    Grid.Row="3"
+                    ColumnDefinitions="0.5*,0.5*"
+                    ColumnSpacing="8"
+                    ToolTipProperties.Text="Dont forget to visit Doctor...">
+                    <!--  Routine Checkup  -->
+                    <Grid Grid.Column="0" RowDefinitions="Auto,Auto">
+                        <Border
+                            Padding="16"
+                            MinimumHeightRequest="80"
+                            Style="{StaticResource UpperHalfBorderButtonStyle}">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="{StaticResource shadowColor}"
+                                    Opacity="0.15"
+                                    Radius="2"
+                                    Offset="0,6" />
+                            </Border.Shadow>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                                <TapGestureRecognizer Command="{Binding UpdateRoutineCheckCommand}" />
+                            </Border.GestureRecognizers>
+                            <Label
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="Next Routine Checkup"
+                                TextColor="{StaticResource pupleAAA}" />
+                        </Border>
+                        <Border
+                            Grid.Row="1"
+                            Padding="16"
+                            MinimumHeightRequest="80"
+                            Style="{StaticResource LowerHalfBorderButtonStyle}">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="{StaticResource shadowColor}"
+                                    Opacity="0.15"
+                                    Radius="2"
+                                    Offset="0,6" />
+                            </Border.Shadow>
+                            <Label
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="15/03/2026 06:30PM"
+                                TextColor="{StaticResource pupleAAA}" />
+                        </Border>
+                    </Grid>
+                    <!--  Reports Section  -->
+                    <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                        <Border
+                            Padding="16"
+                            MinimumHeightRequest="80"
+                            Style="{StaticResource UpperHalfBorderButtonStyle}">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="{StaticResource shadowColor}"
+                                    Opacity="0.15"
+                                    Radius="2"
+                                    Offset="0,6" />
+                            </Border.Shadow>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                                <TapGestureRecognizer Command="{Binding UploadReportCommand}" />
+                            </Border.GestureRecognizers>
+
+                            <Label
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="Upload Reports"
+                                TextColor="{StaticResource pupleAAA}" />
+                        </Border>
+                        <Border
+                            Grid.Row="1"
+                            Padding="16"
+                            MinimumHeightRequest="80"
+                            Style="{StaticResource LowerHalfBorderButtonStyle}">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="{StaticResource shadowColor}"
+                                    Opacity="0.15"
+                                    Radius="2"
+                                    Offset="0,6" />
+                            </Border.Shadow>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                                <TapGestureRecognizer Command="{Binding ViewSummaryCommand}" />
+                            </Border.GestureRecognizers>
+                            <Label
+                                FontSize="16"
+                                HorizontalTextAlignment="Center"
+                                Text="View Summary"
+                                TextColor="{StaticResource pupleAAA}" />
+                        </Border>
+                    </Grid>
+                </Grid>
+                <!--  Emergency Contacts  -->
+                <Grid
+                    Grid.Row="4"
+                    ColumnDefinitions="*, *, *"
+                    ColumnSpacing="8"
+                    HorizontalOptions="Fill"
+                    ToolTipProperties.Text="Emergency Contacts."
+                    VerticalOptions="StartAndExpand">
+                    <Border
+                        Grid.Column="0"
+                        Padding="8"
+                        BackgroundColor="{StaticResource greyBackgroundColor}"
+                        HeightRequest="80"
+                        HorizontalOptions="Fill"
+                        Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                        VerticalOptions="Fill">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="{StaticResource shadowColor}"
+                                Opacity="0.15"
+                                Radius="2"
+                                Offset="0,6" />
+                        </Border.Shadow>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                            <TapGestureRecognizer Command="{Binding CallDoctorCommand}" />
+                        </Border.GestureRecognizers>
+
+                        <Label
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="Call Doctor"
+                            TextColor="{StaticResource pupleAAA}"
+                            VerticalOptions="Fill"
+                            VerticalTextAlignment="Center" />
+                    </Border>
+                    <Border
+                        Grid.Column="1"
+                        Padding="8"
+                        BackgroundColor="{StaticResource greyBackgroundColor}"
+                        HeightRequest="80"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource FullWidthBorderButtonCardStyle}">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="{StaticResource shadowColor}"
+                                Opacity="0.15"
+                                Radius="2"
+                                Offset="0,6" />
+                        </Border.Shadow>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                            <TapGestureRecognizer Command="{Binding CallPharmacyCommand}" />
+                        </Border.GestureRecognizers>
+                        <Label
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="Call Pharmacy"
+                            TextColor="{StaticResource pupleAAA}"
+                            VerticalOptions="Fill"
+                            VerticalTextAlignment="Center" />
+                    </Border>
+                    <Border
+                        Grid.Column="2"
+                        Padding="8"
+                        BackgroundColor="{StaticResource greyBackgroundColor}"
+                        HeightRequest="80"
+                        Style="{StaticResource FullWidthBorderButtonCardStyle}">
+
+                        <Border.Shadow>
+                            <Shadow
+                                Brush="{StaticResource shadowColor}"
+                                Opacity="0.15"
+                                Radius="2"
+                                Offset="0,6" />
+                        </Border.Shadow>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                            <TapGestureRecognizer Command="{Binding CallRelativeCommand}" />
+                        </Border.GestureRecognizers>
+                        <Label
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap"
+                            Text="Call Relative"
+                            TextColor="{StaticResource pupleAAA}"
+                            VerticalOptions="Fill"
+                            VerticalTextAlignment="Center" />
+                    </Border>
+                </Grid>
+            </Grid>
+
+        </ScrollView>
+        <Grid
+            Grid.Row="1"
+            Margin="-16,0,0,0"
+            Style="{StaticResource AppFooterGridStyle}">
+            <Line Grid.Column="0" Style="{StaticResource FooterHighlighterLineStyle}" />
+        </Grid>
+    </Grid>
+</ContentPage>

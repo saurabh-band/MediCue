@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MediCue.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MediCue"
+    xmlns:stringMarkup="clr-namespace:MediCue.Extensions"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:MediCue.Views"
+    Title="MediCue"
+    FlyoutBackgroundColor="{StaticResource greyBackgroundColor}"
+    Shell.FlyoutBehavior="Flyout">
+
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior x:Name="StatusBar" StatusBarColor="{StaticResource StatusBarColor}" />
+    </Shell.Behaviors>
+
+    <TabBar Route="Login">
+        <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
+    </TabBar>
+
+    <TabBar
+        Route="Home"
+        Shell.TabBarBackgroundColor="{StaticResource White}"
+        Shell.TabBarForegroundColor="{StaticResource pupleAAA}"
+        Shell.TabBarTitleColor="{StaticResource pupleAAA}"
+        Shell.TabBarUnselectedColor="{StaticResource greySecondary}"
+        Shell.UnselectedColor="Black">
+        <Tab
+            Title="Home"
+            Icon="home.png"
+            Route="Main">
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+        <Tab Title="Pills Summary" Icon="medicinesummary.png">
+            <ShellContent ContentTemplate="{DataTemplate views:MedicineSummaryPage}" />
+        </Tab>
+        <Tab Title="Reports Summary" Icon="reportssummary.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ReportsAndSummaryPage}" />
+        </Tab>
+    </TabBar>
+
+    <FlyoutItem Title="Medicine Scheduler" Icon="checkbox.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:MedicineSchedulePage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Refill Medicine" Icon="checkbox.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:RefillMedicinePage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Refill Medicine (Scan QR/Barcode)" Icon="checkbox.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:ScanQRToRefillMedicine}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Emergency Contact" Icon="emergencycall.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:EmergencyContactPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Personal Details" Icon="userprofile.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:PersonalDetailsPage}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="App Settings" Icon="mobileappsettings.png">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate views:AppSettingsPage}" />
+        </Tab>
+    </FlyoutItem>
+
+</Shell>

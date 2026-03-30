@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.MedicineSummaryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="MedicineSummaryPage"
+    Shell.FlyoutBehavior="Flyout"
+    Style="{StaticResource ShellPageWithTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions=".8*,.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Medicine Summary" />
+            <ImageButton
+                Grid.Column="1"
+                BackgroundColor="{StaticResource StatusBarColor}"
+                Command="{Binding ChatBotCommand}"
+                Source="chatbot.png"
+                VerticalOptions="End" />
+        </Grid>
+    </Shell.TitleView>
+
+    <!--  Page layout: content + footer  -->
+    <Grid RowDefinitions="*,Auto">
+        <!--  Main content: list + buttons  -->
+        <Grid RowDefinitions="*,Auto">
+            <!--  Header + CollectionView  -->
+            <Grid Padding="8" RowDefinitions="Auto,Auto,*">
+
+                <!--  Title  -->
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SectionHeaderStyle}"
+                    Text="January 2026" />
+
+                <!--  Table Header  -->
+                <Grid
+                    Grid.Row="1"
+                    BackgroundColor="#DDE6F1"
+                    ColumnDefinitions=".25*, .25*, .25*, .25*"
+                    HeightRequest="40">
+                    <Label
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Text="Date"
+                        VerticalOptions="Center" />
+
+                    <Image
+                        Grid.Column="1"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Source="morning.png"
+                        VerticalOptions="Center"
+                        WidthRequest="44" />
+
+                    <Image
+                        Grid.Column="2"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Source="afternoon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="40" />
+
+                    <Image
+                        Grid.Column="3"
+                        HeightRequest="38"
+                        HorizontalOptions="Center"
+                        Source="night.png"
+                        VerticalOptions="Center"
+                        WidthRequest="38" />
+                </Grid>
+
+                <!--  Table Content  -->
+                <CollectionView
+                    Grid.Row="2"
+                    ItemsSource="{Binding MedicationEntries}"
+                    VerticalScrollBarVisibility="Always">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid
+                                Padding="8"
+                                BackgroundColor="#EEF2F3"
+                                ColumnDefinitions=".25*, .25*, .25*, .25*">
+
+                                <Label Grid.Column="0" Text="{Binding Date, StringFormat='{0:dd/MM/yy}'}" />
+
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding MorningTime}" />
+
+                                <Label
+                                    Grid.Column="2"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding AfternoonTime}" />
+
+                                <Label
+                                    Grid.Column="3"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding NightTime}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+            <!--  Buttons (fixed at bottom of main content area)  -->
+            <Grid
+                Grid.Row="1"
+                Margin="0,0,0,8"
+                Style="{StaticResource BottomButtonGridStyle}">
+                <!--  Buttons  -->
+                <Button
+                    BackgroundColor="Green"
+                    Command="{Binding GenerateSummaryCommand}"
+                    Text="Generate Summary"
+                    TextColor="White" />
+
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="#0066CC"
+                    Command="{Binding ExportToPdfCommand}"
+                    Text="Export to PDF"
+                    TextColor="White" />
+            </Grid>
+
+        </Grid>
+        <!--  Footer highlight  -->
+        <Grid Grid.Row="1" Style="{StaticResource AppFooterGridStyle}">
+            <Line Grid.Column="1" Style="{StaticResource FooterHighlighterLineStyle}" />
+        </Grid>
+    </Grid>
+</ContentPage>

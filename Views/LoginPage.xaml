@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="LoginPage"
+    Padding="16"
+    BackgroundColor="White"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource StatusBarColor}" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
+
+    <Grid
+        HorizontalOptions="Center"
+        RowDefinitions="Auto, Auto,*"
+        RowSpacing="15"
+        VerticalOptions="Fill">
+        <Label
+            Grid.Row="0"
+            FontSize="64"
+            Text="MediCue"
+            TextColor="{StaticResource pupleAAA}"
+            VerticalOptions="Start" />
+        <Image
+            Grid.Row="1"
+            Margin="0,32,0,0"
+            Aspect="AspectFill"
+            HeightRequest="200"
+            Source="brainai.png"
+            WidthRequest="200" />
+        <Grid
+            Grid.Row="2"
+            Margin="0,-64,0,0"
+            VerticalOptions="Center">
+            <Border
+                Padding="16"
+                BackgroundColor="{StaticResource greyBackgroundColor}"
+                Style="{StaticResource FullWidthBorderButtonCardStyle}">
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+                <StackLayout Orientation="Vertical">
+                    <Label
+                        FontSize="Medium"
+                        Text="User Name"
+                        TextColor="Black" />
+                    <Entry Grid.Row="1" Placeholder="Please Enter User Id Here..." />
+                    <Label
+                        FontSize="Medium"
+                        Text="Password"
+                        TextColor="Black" />
+                    <Entry IsPassword="True" Placeholder="Please Enter Password" />
+                    <Button
+                        BackgroundColor="{StaticResource pupleAAA}"
+                        Command="{Binding LoginCommand}"
+                        Text="Sign In"
+                        TextColor="White" />
+                </StackLayout>
+            </Border>
+        </Grid>
+        <ActivityIndicator IsRunning="{Binding IsLoading}" Style="{StaticResource ActivityIndicatorStyle}" />
+    </Grid>
+</ContentPage>

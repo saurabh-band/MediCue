@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.UpdateMedicineSchedulePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:vm="clr-namespace:MediCue.ViewModels"
+    x:DataType="vm:UpdateMedicineScheduleViewModel"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="0.8*,0.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Update Medicine Schedule" />
+        </Grid>
+    </Shell.TitleView>
+    <Grid
+        Margin="0,16,0,0"
+        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+        RowSpacing="16"
+        VerticalOptions="Center">
+        <VerticalStackLayout Spacing="8">
+            <Label Text="Select Medicine Name" />
+            <Picker
+                Title="Select medicine"
+                ItemDisplayBinding="{Binding Medicine}"
+                ItemsSource="{Binding MedicineNames}"
+                SelectedItem="{Binding SelectedMedicineName}" />
+        </VerticalStackLayout>
+        <Grid
+            Grid.Row="1"
+            ColumnDefinitions=".33*, .33*,.33*"
+            ColumnSpacing="8">
+            <Border
+                Grid.Column="0"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                VerticalOptions="Center">
+
+                <Border.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsMorningSelected}"
+                        TargetType="Border"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="Green" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                    <TapGestureRecognizer Command="{Binding ToggleDoseCommand}" CommandParameter="Morning" />
+
+                </Border.GestureRecognizers>
+                <VerticalStackLayout>
+                    <Image
+                        Margin="0,16,0,0"
+                        Aspect="AspectFit"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Source="incorrect.png"
+                        VerticalOptions="Center"
+                        WidthRequest="44">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsMorningSelected}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Source" Value="correctcheckmark.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource MediumSecondaryLabelStyle}"
+                        Text="Morning"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+            <Border
+                Grid.Column="1"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                VerticalOptions="Center">
+
+                <Border.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsAfternoonSelected}"
+                        TargetType="Border"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="Green" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                    <TapGestureRecognizer Command="{Binding ToggleDoseCommand}" CommandParameter="Afternoon" />
+
+                </Border.GestureRecognizers>
+                <VerticalStackLayout>
+                    <Image
+                        Margin="0,16,0,0"
+                        Aspect="AspectFit"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Source="incorrect.png"
+                        VerticalOptions="Center"
+                        WidthRequest="44">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsAfternoonSelected}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Source" Value="correctcheckmark.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource MediumSecondaryLabelStyle}"
+                        Text="Afternnon"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+            </Border>
+            <Border
+                Grid.Column="2"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                VerticalOptions="Center">
+
+                <Border.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsEveningSelected}"
+                        TargetType="Border"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="Green" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                    <TapGestureRecognizer Command="{Binding ToggleDoseCommand}" CommandParameter="Evening" />
+
+                </Border.GestureRecognizers>
+                <VerticalStackLayout>
+                    <Image
+                        Margin="0,16,0,0"
+                        Aspect="AspectFit"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Source="incorrect.png"
+                        VerticalOptions="Center"
+                        WidthRequest="44">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsEveningSelected}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Source" Value="correctcheckmark.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource MediumSecondaryLabelStyle}"
+                        Text="Evening"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="Auto,Auto"
+            ColumnSpacing="16"
+            HorizontalOptions="Center">
+            <Border
+                x:Name="BeforeMealBtn"
+                Grid.Column="0"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                VerticalOptions="Center">
+
+                <Border.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsBeforeMealSelected}"
+                        TargetType="Border"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="Green" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectMealTimingCommand}" CommandParameter="Before Meal" />
+                    <TapGestureRecognizer CommandParameter="BeforeMeal" Tapped="OnBeforeMealBtnTapped" />
+
+                </Border.GestureRecognizers>
+                <VerticalStackLayout>
+                    <Image
+                        Margin="0,16,0,0"
+                        Aspect="AspectFit"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Source="incorrect.png"
+                        VerticalOptions="Center"
+                        WidthRequest="44">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsBeforeMealSelected}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Source" Value="correctcheckmark.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource MediumSecondaryLabelStyle}"
+                        Text="Before Meal"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+            <Border
+                x:Name="AfterMealBtn"
+                Grid.Column="1"
+                BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                VerticalOptions="Center">
+
+                <Border.Triggers>
+                    <DataTrigger
+                        Binding="{Binding IsAfterMealSelected}"
+                        TargetType="Border"
+                        Value="True">
+                        <Setter Property="BackgroundColor" Value="Green" />
+                    </DataTrigger>
+                </Border.Triggers>
+
+                <Border.Shadow>
+                    <Shadow
+                        Brush="{StaticResource shadowColor}"
+                        Opacity="0.15"
+                        Radius="2"
+                        Offset="0,6" />
+                </Border.Shadow>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectMealTimingCommand}" CommandParameter="After Meal" />
+                    <TapGestureRecognizer CommandParameter="AfterMeal" Tapped="OnAfterMealBtnTapped" />
+
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout>
+                    <Image
+                        Margin="0,16,0,0"
+                        Aspect="AspectFit"
+                        HeightRequest="44"
+                        HorizontalOptions="Center"
+                        Source="incorrect.png"
+                        VerticalOptions="Center"
+                        WidthRequest="44">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsAfterMealSelected}"
+                                TargetType="Image"
+                                Value="True">
+                                <Setter Property="Source" Value="correctcheckmark.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource MediumSecondaryLabelStyle}"
+                        Text="After Meal"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+            </Border>
+        </Grid>
+        <HorizontalStackLayout
+            Grid.Row="3"
+            HorizontalOptions="Center"
+            Spacing="8"
+            VerticalOptions="Center">
+            <Label
+                Margin="0"
+                Style="{StaticResource SectionHeaderStyle}"
+                Text="Course Period"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+            <Entry Placeholder="Enter Days" VerticalOptions="Start" />
+            <Label
+                Margin="0"
+                Style="{StaticResource SectionHeaderStyle}"
+                Text="Days"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+            Grid.Row="4"
+            HorizontalOptions="Center"
+            Spacing="8"
+            VerticalOptions="Center">
+            <Label
+                Margin="0"
+                Style="{StaticResource SectionHeaderStyle}"
+                Text="Starts From"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
+            <DatePicker
+                Date="{x:Static sys:DateTime.Today}"
+                Format="D"
+                MinimumDate="{x:Static sys:DateTime.Today}" />
+        </HorizontalStackLayout>
+        <Button
+            Grid.Row="5"
+            Margin="0,0,0,16"
+            Text="Save" />
+        <Button Grid.Row="6" Text="Save &amp; Add to Stock" />
+        <Label
+            Grid.Row="7"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="WordWrap"
+            Text="This option will save your medicine schedule and automatically update your medicine stock." />
+
+    </Grid>
+</ContentPage>

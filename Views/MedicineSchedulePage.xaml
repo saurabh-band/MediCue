@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.MedicineSchedulePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MediCue.ViewModels"
+    x:DataType="vm:MedicineScheduleViewModel"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="0.8*,0.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Medicine Schedule" />
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid>
+        <Border
+            BackgroundColor="{StaticResource greyBackgroundColor}"
+            Style="{StaticResource FullWidthBorderButtonCardStyle}"
+            VerticalOptions="FillAndExpand">
+
+            <Border.Shadow>
+                <Shadow
+                    Brush="{StaticResource shadowColor}"
+                    Opacity="0.15"
+                    Radius="2"
+                    Offset="0,6" />
+            </Border.Shadow>
+
+            <Grid
+                Padding="32"
+                HorizontalOptions="FillAndExpand"
+                RowDefinitions="Auto, Auto"
+                RowSpacing="24"
+                VerticalOptions="Center">
+
+                <Border
+                    Grid.Row="0"
+                    Padding="24,16,24,16"
+                    BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                    VerticalOptions="Center">
+
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="{StaticResource shadowColor}"
+                            Opacity="0.15"
+                            Radius="2"
+                            Offset="0,6" />
+                    </Border.Shadow>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                        <TapGestureRecognizer Command="{Binding NavigateToAddNewMedicineSchedulePageCommand}" />
+
+                    </Border.GestureRecognizers>
+
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource SectionHeaderStyle}"
+                        Text="Add&#10;New&#10;Schedule"
+                        VerticalOptions="CenterAndExpand"
+                        VerticalTextAlignment="Center" />
+                </Border>
+
+                <Border
+                    Grid.Row="1"
+                    Padding="24,16,24,16"
+                    BackgroundColor="{StaticResource buttonPressedBackgroundColor}"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource FullWidthBorderButtonCardStyle}"
+                    VerticalOptions="Center">
+
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="{StaticResource shadowColor}"
+                            Opacity="0.15"
+                            Radius="2"
+                            Offset="0,6" />
+                    </Border.Shadow>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnViewSummaryTapped" />
+                        <TapGestureRecognizer Command="{Binding NavigateToUpdateMedicineSchedulePageCommand}" />
+
+                    </Border.GestureRecognizers>
+
+                    <Label
+                        Margin="16"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.0"
+                        Style="{StaticResource SectionHeaderStyle}"
+                        Text="Update&#10;Old&#10;Schedule"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+
+</ContentPage>

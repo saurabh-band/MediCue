@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.ChatBotPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:syncfusion="clr-namespace:Syncfusion.Maui.Chat;assembly=Syncfusion.Maui.Chat"
+    xmlns:vm="clr-namespace:MediCue.ViewModels"
+    x:DataType="vm:ChatBotViewModel"
+    Shell.FlyoutBehavior="Disabled"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions=".8*,.2*">
+            <Label
+                Grid.Column="0"
+                HorizontalOptions="Center"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="AI Chat Assistance"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <syncfusion:SfChat
+        CurrentUser="{Binding CurrentUser}"
+        Messages="{Binding Messages}"
+        SendMessageCommand="{Binding SendMessageCommand, ConverterParameter=.}"
+        ShowIncomingMessageAvatar="True"
+        ShowOutgoingMessageAvatar="True"
+        ShowTimeBreak="True" />
+</ContentPage>

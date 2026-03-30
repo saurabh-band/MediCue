@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MediCue.Views.ReportSummaryTextPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MediCue.ViewModels"
+    x:DataType="vm:ReportSummaryTextViewModel"
+    Style="{StaticResource ShellPageWithoutTabBarStyle}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="0.8*,0.2*">
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource PageTitleLabelstyle}"
+                Text="Report Summary" />
+        </Grid>
+    </Shell.TitleView>
+    <Grid RowDefinitions="Auto,*">
+        <VerticalStackLayout Grid.Row="0" HorizontalOptions="Center">
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource SectionHeaderStyle}"
+                Text="{Binding ReportSummaryTitle}" />
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource MediumSecondaryLabelStyle}"
+                Text="{Binding ReportDate, StringFormat='{0:MMM dd, yyyy}'}" />
+        </VerticalStackLayout>
+        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Always">
+            <VerticalStackLayout Padding="16" Spacing="12">
+                <Label
+                    FontSize="14"
+                    LineBreakMode="WordWrap"
+                    Text="{Binding ReportSummaryText}"
+                    TextColor="Black" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
