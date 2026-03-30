@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="MediCue.Popups.MedicineMealTablePopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <Border
+        Padding="16"
+        BackgroundColor="{StaticResource White}"
+        StrokeShape="RoundRectangle 12">
+        <VerticalStackLayout Spacing="12">
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="{Binding Title}" />
+
+            <!--  header  -->
+            <Grid ColumnDefinitions="2*,2*" ColumnSpacing="12">
+                <Label FontAttributes="Bold" Text="Medicine" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    Text="After / Before Meal" />
+            </Grid>
+
+            <BoxView BackgroundColor="{StaticResource Gray300}" HeightRequest="1" />
+
+            <!--  rows  -->
+            <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Padding="0,6"
+                            ColumnDefinitions="2*,2*"
+                            ColumnSpacing="12">
+                            <Label LineBreakMode="TailTruncation" Text="{Binding Medicine}" />
+                            <Label Grid.Column="1" Text="{Binding MealTiming}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Clicked="OnOkClicked" Text="OK" />
+        </VerticalStackLayout>
+    </Border>
+</toolkit:Popup>
